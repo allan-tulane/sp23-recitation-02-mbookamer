@@ -7,6 +7,8 @@ import tabulate
 import time
 ###
 
+#I coded this out in VS code and only put the final steps here for simplicity and clarity
+
 def simple_work_calc(n, a, b):
 	"""Compute the value of the recurrence $W(n) = aW(n/b) + n
 
@@ -18,6 +20,10 @@ def simple_work_calc(n, a, b):
 	Returns: the value of W(n).
 	"""
 	# TODO
+	if n == 1:
+		return 1 #base case
+	else:
+		return a*simple_work_calc(n/b, a, b) + n #recursive step 
 	pass
 
 def test_simple_work():
@@ -39,6 +45,10 @@ def work_calc(n, a, b, f):
 	Returns: the value of W(n).
 	"""
 	# TODO
+	if n <= 1:
+		return 1 #base case
+	else: 
+		a*work_calc(n//b, a, b, f) + f(n) #recursive step that only works with integer values as opposed to simple_work
 	pass
 
 def span_calc(n, a, b, f):
@@ -54,6 +64,10 @@ def span_calc(n, a, b, f):
 	Returns: the value of W(n).
 	"""
 	# TODO
+	if n<= 1:
+		return 1 #base case
+	else:
+		return a*work_calc(n//b, a, b, f) + f(n) #however, we know for span a will always =1
 	pass
 
 def test_work():
