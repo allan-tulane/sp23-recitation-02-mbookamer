@@ -23,7 +23,7 @@ def simple_work_calc(n, a, b):
 	if n <= 1:
 		return 1 #base case
 	else:
-		return a*simple_work_calc(n//b, a, b) + n #recursive step 
+		return a*simple_work_calc(n/b, a, b) + n #recursive step 
 	pass
 
 def test_simple_work():
