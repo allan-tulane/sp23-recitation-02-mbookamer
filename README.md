@@ -1,7 +1,9 @@
 # CMPS 2200  Recitation 02
 
-**Name (Team Member 1):**_________________________  
-**Name (Team Member 2):**_________________________
+**Name (Team Member 1):** Mackenzie Bookamer
+
+**ANSWERS ARE IN THIS TEXT FILE**
+
 
 In this recitation, we will investigate recurrences. 
 To complete this recitation, follow the instructions in this document. Some of your answers will go in this file, and others will require you to edit `main.py`.
@@ -40,7 +42,7 @@ $$ W(n) = aW(n/b) + f(n) $$
 
 where $W(1) = 1$.
 
-- [ ] 1. (2 point) In `main.py`, you have stub code which includes a function `simple_work_calc`. Implement this function to return the value of $W(n)$ for arbitrary values of $a$ and $b$ with $f(n)=n$.
+- [x ] 1. (2 point) In `main.py`, you have stub code which includes a function `simple_work_calc`. Implement this function to return the value of $W(n)$ for arbitrary values of $a$ and $b$ with $f(n)=n$.
 
 - [ ] 2. (2 point) Test that your function is correct by calling from the command-line `pytest main.py::test_simple_work` by completing the test cases and adding 3 additional ones.
 
@@ -55,5 +57,8 @@ where $W(1) = 1$.
 **TODO: your answer goes here**
 
 - [ ] 6. (3 points) $W(n)$ is meant to represent the running time of some recursive algorithm. Suppose we always had $a$ processors available to us and we wanted to compute the span of the same algorithm. Implement the function `span_calc` to compute the empirical span, where the work of the algorithm is given by $W(n)$. Implement `test_compare_span` to create a new comparison function for comparing span functions. Derive the asymptotic expressions for the span of the recurrences you used in problem 4 above. Confirm that everything matches up as it should. 
+- when f(n) = 1, O(f(n)) = O(log n) because the total cost is the span multiplied by the work done at each level. We have log n tree depth multipled by 1, so the running time is O(log n). At every level, our total amount of work done is the same, so the total cost is dependent on the depth of our tree, given by log n. 
+- when f(n) = n, O(f(n)) = O(n log n). Using the same logic above, we have n work on every level with span log n, so our total cost becomes n log n. 
+- -when f(n) = log n, O(f(n)) = O(log^2 n), with the same logic above. 
 
 **TODO: your answer goes here**
