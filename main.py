@@ -31,6 +31,9 @@ def test_simple_work():
 	assert work_calc(10, 2, 2) == 56 #TODO
 	assert work_calc(20, 3, 2) == 506.75 #TODO
 	assert work_calc(30, 4, 2) == 1954 #TODO
+	assert work_calc(16, 2, 3) == 80
+	assert work_calc(20, 4, 2) == 1644
+	assert work_calc(10, 2, 5) == 18
 
 def work_calc(n, a, b, f):
 	"""Compute the value of the recurrence $W(n) = aW(n/b) + f(n)
@@ -75,6 +78,9 @@ def test_work():
 	assert work_calc(10, 2, 2,lambda n: 1) == 15 #TODO
 	assert work_calc(20, 1, 2, lambda n: n*n) == 530 #TODO
 	assert work_calc(30, 3, 2, lambda n: n) == 300 #TODO
+	assert work_calc(16, 1, 2,lambda n: n) ==
+	assert work_calc(10, 2, 2,lambda n: 1) ==
+	assert work_calc(10, 2, 2,lambda n: 1) ==
 
 def compare_work(work_fn1, work_fn2, sizes=[10, 20, 50, 100, 1000, 5000, 10000]):
 	"""
