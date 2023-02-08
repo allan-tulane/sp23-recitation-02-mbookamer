@@ -34,6 +34,8 @@ def test_simple_work():
 	assert work_calc(16, 2, 3) == 80
 	assert work_calc(20, 4, 2) == 1644
 	assert work_calc(10, 2, 5) == 18
+	
+pytest main.py::test_simple_work
 
 def work_calc(n, a, b, f):
 	"""Compute the value of the recurrence $W(n) = aW(n/b) + f(n)
