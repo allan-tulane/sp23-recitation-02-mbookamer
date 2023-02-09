@@ -84,6 +84,31 @@ table for $w_1$ = f(n) = n, $w_2$= f(n) = $\log n$:
 
 - [ ] 5. (4 points) Now that you have a nice way to empirically generate valuess of $W(n)$, we can look at the relationship between $a$, $b$, and $f(n)$. Suppose that $f(n) = n^c$. What is the asypmptotic behavior of $W(n)$ if $c < \log_b a$? What about $c > \log_b a$? And if they are equal? Modify `compare_work` to compare empirical values for different work functions (at several different values of $n$) to justify your answer. 
 
+I plugged in values of a=4, b=2 to use for my values to compute the exponents. In order to get the exponent value, for $c < \log_b a$, I put $c = \log_b a -1$ as the exponent. For $c > \log_b a$, I put $c = \log_b a +1$ as the exponent. For the equality, I simply put $c = \log_b a$ as the exponent. My results are below. 
+
+table for $w_1$ = $c = \log_b a -1$, $w_2$= $c = \log_b a +1$:
+|     n |           W_1 |               W_2 |
+|-------|---------------|-------------------|
+|    10 |       126.000 |          1692.000 |
+|    20 |       524.000 |         14768.000 |
+|    50 |      2518.000 |        236908.000 |
+|   100 |     10172.000 |       1947632.000 |
+|  1000 |    697496.000 |    1987993280.000 |
+|  5000 |  34237688.000 |  249711292352.000 |
+| 10000 | 136960752.000 | 1998845169408.000 |
+
+table for $w_1$ = $c = \log_b a -1$, $w_2$= $c = \log_b$: 
+
+|     n |           W_1 |            W_2 |
+|-------|---------------|----------------|
+|    10 |       126.000 |        328.000 |
+|    20 |       524.000 |       1712.000 |
+|    50 |      2518.000 |      12936.000 |
+|   100 |     10172.000 |      61744.000 |
+|  1000 |    697496.000 |    8544512.000 |
+|  5000 |  34237688.000 |  294904064.000 |
+| 10000 | 136960752.000 | 1279616256.000 |
+
 
 
 **TODO: your answer goes here**
