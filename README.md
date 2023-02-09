@@ -48,7 +48,7 @@ where $W(1) = 1$.
 
 - [ x] 3. (2 point) Now implement `work_calc`, which generalizes the above so that we can now input $a$, $b$ and a *function* $f(n)$ as arguments. Test this code by completing the test cases in `test_work` and adding 3 more cases.
 
-- [FIX ] 4. (2 point) Now, derive the asymptotic behavior of $W(n)$ using $f(n) = 1$, $f(n) = \log n$ and $f(n) = n$. Then, generate actual values for $W(n)$ for your code and confirm that the trends match your derivations.
+- [x] 4. (2 point) Now, derive the asymptotic behavior of $W(n)$ using $f(n) = 1$, $f(n) = \log n$ and $f(n) = n$. Then, generate actual values for $W(n)$ for your code and confirm that the trends match your derivations.
 
 -When f(n) = 1, we see that the function is leaf dominated, with the total work at the last level being $2^i$. We know our last level is when i = $\log_2 n$, and when we compute this value, we get n, meaning that O(n) is correct.
 
@@ -56,7 +56,7 @@ where $W(1) = 1$.
 
 -When f(n) = n, we see that the function is balanced, with the work on the first level being the same as the work done on the last level, which is equal to n. Thus, our total work is given by multiplying our tree depth by the work done at every level, yielding O(n * $\log_2 n$).
 
-Fixed a, b =2. 
+Fixed a, b =2. The tables generally tend to follow my predictions as n gets larger, which is desired. 
 
 table for $w_1$ = f(n) =1, $w_2$ = f(n) = n: 
 |     n |   W_1 |    W_2 |
@@ -82,9 +82,17 @@ table for $w_1$ = f(n) = n, $w_2$= f(n) = $\log n$:
 
 **TODO: your answer goes here**
 
-- [ ] 5. (4 points) Now that you have a nice way to empirically generate valuess of $W(n)$, we can look at the relationship between $a$, $b$, and $f(n)$. Suppose that $f(n) = n^c$. What is the asypmptotic behavior of $W(n)$ if $c < \log_b a$? What about $c > \log_b a$? And if they are equal? Modify `compare_work` to compare empirical values for different work functions (at several different values of $n$) to justify your answer. 
+- [ x] 5. (4 points) Now that you have a nice way to empirically generate valuess of $W(n)$, we can look at the relationship between $a$, $b$, and $f(n)$. Suppose that $f(n) = n^c$. What is the asypmptotic behavior of $W(n)$ if $c < \log_b a$? What about $c > \log_b a$? And if they are equal? Modify `compare_work` to compare empirical values for different work functions (at several different values of $n$) to justify your answer. 
 
 I plugged in values of a=4, b=2 to use for my values to compute the exponents. In order to get the exponent value, for $c < \log_b a$, I put $c = \log_b a -1$ as the exponent. For $c > \log_b a$, I put $c = \log_b a +1$ as the exponent. For the equality, I simply put $c = \log_b a$ as the exponent. My results are below. 
+
+-When $c < \log_b a$, the cost at each level increases in proportion to n, meaning that it is a linear runtime. This yields O(n). 
+
+-When $c > \log_b a$, the cost at each level decreases, so the function is root dominated, yielding O($n^c$). 
+
+-When $c = \log_b a$, the cost at each level is the same, so it is balanced, meaning that we multiply the cost at every level by the number of levels, yielding O(n $\log_b n)). 
+
+The tables below match my predicitons! 
 
 table for $w_1$ = $c = \log_b a -1$, $w_2$= $c = \log_b a +1$:
 |     n |           W_1 |               W_2 |
@@ -120,6 +128,8 @@ table for $w_1$ = $c = \log_b a -1$, $w_2$= $c = \log_b$:
 -When f(n) = $\log n$, the function is leaf dominated because the work done at each level increases, so we only care about the work done at the last level, which is $\log n$ * $\log n$, so O($\log^2 n$) is correct. 
 
 -When f(n) = n, we see that the function is root dominated because the work done at each level decreases, so we only care about the work done at the root, which is $\log n$, so O(n) is correct. 
+
+The following tables generally match my predicitions!
 
 
 table for $s_1$ = f(n) = n, $s_2$= f(n) = $\log n$:
