@@ -46,21 +46,78 @@ where $W(1) = 1$.
 
 - [ x] 2. (2 point) Test that your function is correct by calling from the command-line `pytest main.py::test_simple_work` by completing the test cases and adding 3 additional ones.
 
-- [ ] 3. (2 point) Now implement `work_calc`, which generalizes the above so that we can now input $a$, $b$ and a *function* $f(n)$ as arguments. Test this code by completing the test cases in `test_work` and adding 3 more cases.
+- [ x] 3. (2 point) Now implement `work_calc`, which generalizes the above so that we can now input $a$, $b$ and a *function* $f(n)$ as arguments. Test this code by completing the test cases in `test_work` and adding 3 more cases.
 
-- [ ] 4. (2 point) Now, derive the asymptotic behavior of $W(n)$ using $f(n) = 1$, $f(n) = \log n$ and $f(n) = n$. Then, generate actual values for $W(n)$ for your code and confirm that the trends match your derivations.
+- [FIX ] 4. (2 point) Now, derive the asymptotic behavior of $W(n)$ using $f(n) = 1$, $f(n) = \log n$ and $f(n) = n$. Then, generate actual values for $W(n)$ for your code and confirm that the trends match your derivations.
 
-- when f(n) = 1, O(f(n)) = O(log n) because the total cost is the span multiplied by the work done at each level. We have log n tree depth multipled by 1, so the running time is O(log n). At every level, our total amount of work done is the same, so the total cost is dependent on the depth of our tree, given by log n. 
-- when f(n) = n, O(f(n)) = O(n log n). Using the same logic above, we have n work on every level with span log n, so our total cost becomes n log n. 
-- -when f(n) = log n, O(f(n)) = O(log^2 n), with the same logic above. 
+-When f(n) = 1, we see that the function is leaf dominated, with the total work at the last level being $2^i$. We know our last level is when i = $\log_2 n$, and when we compute this value, we get n, meaning that O(n) is correct.
+
+-When f(n) = $\log n$, the function is root dominated because the work done at each level decreases, so we only care about the work done at the root, which is $\log n$, so O($\log n$) is correct. 
+
+-When f(n) = n, we see that the function is balanced, with the work on the first level being the same as the work done on the last level, which is equal to n. Thus, our total work is given by multiplying our tree depth by the work done at every level, yielding O(n * $\log_2 n$).
+
+Fixed a, b =2. 
+
+table for $w_1$ = f(n) =1, $w_2$ = f(n) = n: 
+|     n |   W_1 |    W_2 |
+|-------|-------|--------|
+|    10 |    15 |     36 |
+|    20 |    31 |     92 |
+|    50 |    63 |    276 |
+|   100 |   127 |    652 |
+|  1000 |  1023 |   9120 |
+|  5000 |  8191 |  61728 |
+| 10000 | 16383 | 133456 |
+
+table for $w_1$ = f(n) = n, $w_2$= f(n) = $\log n$:
+|     n |    W_1 |       W_2 |
+|-------|--------|-----------|
+|    10 |     36 |    19.966 |
+|    20 |     92 |    44.253 |
+|    50 |    276 |   107.311 |
+|   100 |    652 |   221.265 |
+|  1000 |   9120 |  1896.421 |
+|  5000 |  61728 | 12497.283 |
+| 10000 | 133456 | 25007.854 |
 
 **TODO: your answer goes here**
 
 - [ ] 5. (4 points) Now that you have a nice way to empirically generate valuess of $W(n)$, we can look at the relationship between $a$, $b$, and $f(n)$. Suppose that $f(n) = n^c$. What is the asypmptotic behavior of $W(n)$ if $c < \log_b a$? What about $c > \log_b a$? And if they are equal? Modify `compare_work` to compare empirical values for different work functions (at several different values of $n$) to justify your answer. 
 
+
+
 **TODO: your answer goes here**
 
-- [ ] 6. (3 points) $W(n)$ is meant to represent the running time of some recursive algorithm. Suppose we always had $a$ processors available to us and we wanted to compute the span of the same algorithm. Implement the function `span_calc` to compute the empirical span, where the work of the algorithm is given by $W(n)$. Implement `test_compare_span` to create a new comparison function for comparing span functions. Derive the asymptotic expressions for the span of the recurrences you used in problem 4 above. Confirm that everything matches up as it should. 
+- [ x] 6. (3 points) $W(n)$ is meant to represent the running time of some recursive algorithm. Suppose we always had $a$ processors available to us and we wanted to compute the span of the same algorithm. Implement the function `span_calc` to compute the empirical span, where the work of the algorithm is given by $W(n)$. Implement `test_compare_span` to create a new comparison function for comparing span functions. Derive the asymptotic expressions for the span of the recurrences you used in problem 4 above. Confirm that everything matches up as it should. 
+
+-When f(n) = 1, we see that the span is balanced, so we just multiply our total cost at each node by the number of levels, yielding O($\log n$). 
+
+-When f(n) = $\log n$, the function is leaf dominated because the work done at each level increases, so we only care about the work done at the last level, which is $\log n$ * $\log n$, so O($\log^2 n$) is correct. 
+
+-When f(n) = n, we see that the function is root dominated because the work done at each level decreases, so we only care about the work done at the root, which is $\log n$, so O(n) is correct. 
+
+
+table for $s_1$ = f(n) = n, $s_2$= f(n) = $\log n$:
+|     n |    S_1 |       S_2 |
+|-------|--------|-----------|
+|    10 |     36 |    19.966 |
+|    20 |     92 |    44.253 |
+|    50 |    276 |   107.311 |
+|   100 |    652 |   221.265 |
+|  1000 |   9120 |  1896.421 |
+|  5000 |  61728 | 12497.283 |
+| 10000 | 133456 | 25007.854 |
+
+table for $s_1$ = f(n) =1, $s_2$ = f(n) = n:
+|     n |   S_1 |    S_2 |
+|-------|-------|--------|
+|    10 |    15 |     36 |
+|    20 |    31 |     92 |
+|    50 |    63 |    276 |
+|   100 |   127 |    652 |
+|  1000 |  1023 |   9120 |
+|  5000 |  8191 |  61728 |
+| 10000 | 16383 | 133456 |
 
 
 **TODO: your answer goes here**
